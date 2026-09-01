@@ -8,74 +8,94 @@
     <!-- Tailwind CSS v4 (browser) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://unpkg.com/phosphor-icons@latest/src/css/phosphor.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 min-h-screen">
+<body>
 
-    <header>
-        <div>
-            <!-- LOGO + SLOGAN -->
-            <div>
-                <h1>
-                    <a href="/"
-                        title="Instituto Federal de Educação, Ciência e Tecnologia do Estado do Rio Grande do Norte">
-                        INSTITUTO FEDERAL
-                    </a>
-                </h1>
-                <p>
-                    Educação, Ciência, Cultura e Tecnologia em todo o Rio Grande do Norte
-                </p>
+    <header class="bg-green-800/67 py-2 px-10 text-white font-[Inter]">
+        <div class="mx-auto max-w-[970px] px-4 flex flex-col gap-3">
+            
+            <!-- LOGO + SLOGAN + MENU HAMBURGUER (MOBILE) -->
+            <div class="flex items-center justify-between py-5">
+                <div class="flex items-center gap-4">
+                    <h1>
+                        <a href="/" title="Instituto Federal de Educação, Ciência e Tecnologia do Estado do Rio Grande do Norte">
+                            <img src="assets/img/ifrn_logo_branco.svg" alt="Instituto Federal" class="w-[180px]">
+                        </a>
+                    </h1>
+                    <p class="hidden md:block text-white basis-[250px] self-end text-[1.2rem] font-normal leading-[1.2em]">
+                        Educação, Ciência, Cultura e Tecnologia em todo o Rio Grande do Norte
+                    </p>
+                </div>
+
+                <!-- MENU HAMBÚRGUER (mobile) -->
+                <button id="menuToggle" aria-label="Menu" class="md:hidden text-3xl text-white p-1 hover:text-green-200 transition focus:outline-none">
+                    <i class="ph ph-list"></i>
+                </button>
             </div>
 
-            <!-- MENU HAMBÚRGUER (mobile) -->
-            <button id="menuToggle" aria-label="Menu">
-                <i class="ph ph-list"></i>
-            </button>
-
             <!-- NAVEGAÇÃO PRINCIPAL (desktop) -->
-            <nav aria-label="Navegação principal">
-                <a href="#">Processos seletivos</a>
-                <a href="#">Cursos</a>
-                <a href="#">Campi</a>
-                <a href="#">Institucional</a>
-                <a href="#">Acesso à Informação</a>
-                <a href="#">Eventos</a>
-                <a href="#">Serviços</a>
+            <nav aria-label="Navegação principal" class="hidden md:flex items-center justify-between border-t border-white/20 pt-3 text-xs lg:text-sm font-semibold tracking-wide">
+                <a href="#" class="hover:text-green-200 hover:underline transition">Processos seletivos</a>
+                <a href="#" class="hover:text-green-200 hover:underline transition">Cursos</a>
+                <a href="#" class="hover:text-green-200 hover:underline transition">Campi</a>
+                <a href="#" class="hover:text-green-200 hover:underline transition">Institucional</a>
+                <a href="#" class="hover:text-green-200 hover:underline transition">Acesso à Informação</a>
+                <a href="#" class="hover:text-green-200 hover:underline transition">Eventos</a>
+                <a href="#" class="hover:text-green-200 hover:underline transition">Serviços</a>
             </nav>
 
             <!-- AÇÕES (ícones, busca, contraste, modo escuro) -->
-            <div>
+            <div class="hidden md:flex items-center justify-end gap-4 pb-2">
                 <!-- Ícones sociais -->
-                <div>
-                    <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-                    <a href="#" aria-label="Spotify"><i class="ph ph-spotify-logo"></i></a>
-                    <a href="#" aria-label="TikTok"><i class="ph ph-tiktok-logo"></i></a>
+                <div class="flex items-center gap-1.5">
+                    <a href="#" class="p-1.5 border border-white/70 rounded-full hover:bg-white/20 transition flex justify-center items-center">
+                        <img src="assets/img/instagram-logo.svg" alt="Instagram" class="w-3.5 h-3.5" />
+                    </a>
+                    <a href="#" class="p-1.5 border border-white/70 rounded-full hover:bg-white/20 transition flex justify-center items-center">
+                        <img src="assets/img/x-logo.svg" alt="X" class="w-3.5 h-3.5" />
+                    </a>
+                    <a href="#" class="p-1.5 border border-white/70 rounded-full hover:bg-white/20 transition flex justify-center items-center">
+                        <img src="assets/img/linkedin-logo.svg" alt="LinkedIn" class="w-3.5 h-3.5" />
+                    </a>
+                    <a href="#" class="p-1.5 border border-white/70 rounded-full hover:bg-white/20 transition flex justify-center items-center">
+                        <img src="assets/img/youtube-logo.svg" alt="YouTube" class="w-3.5 h-3.5" />
+                    </a>
+                    <a href="#" class="p-1.5 border border-white/70 rounded-full hover:bg-white/20 transition flex justify-center items-center">
+                        <img src="assets/img/spotify-logo.svg" alt="Spotify" class="w-3.5 h-3.5" />
+                    </a>
+                    <a href="#" class="p-1.5 border border-white/70 rounded-full hover:bg-white/20 transition flex justify-center items-center">
+                        <img src="assets/img/tiktok-logo.svg" alt="TikTok" class="w-3.5 h-3.5" />
+                    </a>
                 </div>
 
+                <div class="h-4 w-[1px] bg-white/30"></div>
+
                 <!-- Busca -->
-                <form method="get" action="/search/">
-                    <input type="search" name="query" placeholder="Busca" aria-label="Busca" />
-                    <button type="submit" aria-label="Pesquisar">
+                <form method="get" action="/search/" class="relative flex items-center">
+                    <input type="search" name="query" placeholder="Busca" aria-label="Busca" class="w-44 bg-white text-gray-800 placeholder-gray-500 text-xs rounded-full pl-8 pr-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-300" />
+                    <button type="submit" aria-label="Pesquisar" class="absolute left-2.5 text-gray-500 text-sm bg-transparent border-none cursor-pointer flex items-center">
                         <i class="ph ph-magnifying-glass"></i>
                     </button>
                 </form>
 
                 <!-- Alto contraste -->
-                <button id="altocontraste" type="button" aria-label="Alto contraste">
-                    <i class="ph ph-contrast"></i>
+                <button class="p-1 hover:opacity-80 transition cursor-pointer">
+                    <img src="assets/img/circle-half.svg" alt="Contraste" class="w-5 h-5" />
                 </button>
 
                 <!-- Modo escuro -->
-                <button type="button" aria-label="Modo escuro">
-                    <i class="ph ph-moon"></i>
+                <button class="p-1 hover:opacity-80 transition cursor-pointer">
+                    <img src="assets/img/moon.svg" alt="Modo Escuro" class="w-5 h-5" />
                 </button>
             </div>
+
         </div>
     </header>
 
 </body>
 
-</html>
+</html>>
