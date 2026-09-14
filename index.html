@@ -4,124 +4,433 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atividade 10 – Seção de Eventos</title>
+    <title>Atividade 9 – Seção Eventos IFRN</title>
+
+    <!-- Tailwind CSS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Phosphor Icons -->
     <link rel="stylesheet" href="https://unpkg.com/phosphor-icons@latest/src/css/phosphor.css" />
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-gray-50 text-gray-800 font-[Inter] antialiased min-h-screen flex flex-col">
 
-    <!-- ===========  Eventos  ================= -->
-    <section>
-        <div>
+    <!-- =========== Cabeçalho / Header ================= -->
+    <header class="bg-green-800 py-3 px-4 text-white">
+        <div class="mx-auto max-w-7xl px-4">
+
+            <!-- Logo, slogan e menu mobile -->
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center gap-4">
+                    <h1>
+                        <a href="/" title="Instituto Federal de Educação, Ciência e Tecnologia do Estado do Rio Grande do Norte" class="no-underline">
+                            <img src="assets/img/ifrn_logo_branco.svg" alt="Instituto Federal do Rio Grande do Norte" class="w-36 md:w-44 lg:w-48">
+                        </a>
+                    </h1>
+
+                    <p class="hidden md:block max-w-xs self-end text-base lg:text-lg font-normal leading-tight">
+                        Educação, Ciência, Cultura e Tecnologia em todo o Rio Grande do Norte
+                    </p>
+                </div>
+
+                <button id="menuToggle" type="button" aria-label="Abrir menu" class="md:hidden bg-transparent border-none p-2 text-3xl text-white hover:text-green-200 transition cursor-pointer">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+
+            <!-- Menu de navegação -->
+            <nav aria-label="Navegação principal" class="hidden md:flex items-center justify-between gap-4 border-t border-white/20 pt-4 pb-3 text-xs lg:text-sm font-semibold">
+                <ul class="flex items-center justify-between gap-4 lg:gap-6 w-full list-none p-0 m-0">
+                    <li><a href="#" class="no-underline hover:text-green-200 transition">Processos seletivos</a></li>
+                    <li><a href="#" class="no-underline hover:text-green-200 transition">Cursos</a></li>
+                    <li><a href="#" class="no-underline hover:text-green-200 transition">Campi</a></li>
+                    <li><a href="#" class="no-underline hover:text-green-200 transition">Institucional</a></li>
+                    <li><a href="#" class="no-underline hover:text-green-200 transition">Acesso à Informação</a></li>
+                    <li><a href="#" class="no-underline hover:text-green-200 transition">Eventos</a></li>
+                    <li><a href="#" class="no-underline hover:text-green-200 transition">Serviços</a></li>
+                </ul>
+            </nav>
+
+            <!-- Redes sociais, busca e acessibilidade -->
+            <div class="hidden md:flex flex-wrap items-center justify-end gap-3 py-3">
+                <ul class="flex items-center gap-2 list-none p-0 m-0">
+                    <li><a href="#" aria-label="Instagram" class="flex items-center justify-center rounded-full border border-white/70 p-1.5 hover:bg-white/20 transition"><img src="assets/img/instagram-logo.svg" alt="Instagram" class="w-3.5 h-3.5 invert"></a></li>
+                    <li><a href="#" aria-label="X" class="flex items-center justify-center rounded-full border border-white/70 p-1.5 hover:bg-white/20 transition"><img src="assets/img/x-logo.svg" alt="X" class="w-3.5 h-3.5 invert"></a></li>
+                    <li><a href="#" aria-label="LinkedIn" class="flex items-center justify-center rounded-full border border-white/70 p-1.5 hover:bg-white/20 transition"><img src="assets/img/linkedin-logo.svg" alt="LinkedIn" class="w-3.5 h-3.5 invert"></a></li>
+                    <li><a href="#" aria-label="YouTube" class="flex items-center justify-center rounded-full border border-white/70 p-1.5 hover:bg-white/20 transition"><img src="assets/img/youtube-logo.svg" alt="YouTube" class="w-3.5 h-3.5 invert"></a></li>
+                    <li><a href="#" aria-label="Spotify" class="flex items-center justify-center rounded-full border border-white/70 p-1.5 hover:bg-white/20 transition"><img src="assets/img/spotify-logo.svg" alt="Spotify" class="w-3.5 h-3.5 invert"></a></li>
+                    <li><a href="#" aria-label="TikTok" class="flex items-center justify-center rounded-full border border-white/70 p-1.5 hover:bg-white/20 transition"><img src="assets/img/tiktok-logo.svg" alt="TikTok" class="w-3.5 h-3.5 invert"></a></li>
+                </ul>
+
+                <div class="h-5 w-px bg-white/30"></div>
+
+                <form id="busca" method="get" action="/search/" class="flex items-center">
+                    <div class="relative">
+                        <input type="search" name="query" placeholder="Busca" aria-label="Buscar" class="w-40 lg:w-48 rounded-full border border-gray-200 bg-gray-100 px-3 py-1 pl-8 text-xs text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300">
+                        <button type="submit" aria-label="Pesquisar" class="absolute left-2 top-1/2 -translate-y-1/2 border-none bg-transparent p-0 text-sm text-gray-500 cursor-pointer">
+                            <i class="ph ph-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <button type="button" aria-label="Alto contraste" class="cursor-pointer rounded p-2 hover:bg-white/10 transition">
+                    <img src="assets/img/circle-half.svg" alt="Contraste" class="h-5 w-5">
+                </button>
+
+                <button type="button" aria-label="Modo escuro" class="cursor-pointer rounded p-2 hover:bg-white/10 transition">
+                    <img src="assets/img/moon.svg" alt="Modo escuro" class="h-5 w-5">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========== Conteúdo Principal / Seção de Eventos ================= -->
+    <main class="flex-grow bg-[#ebf4ee] py-14">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
             <!-- Cabeçalho da seção -->
-            <div>
-                <h2>Eventos</h2>
-                <a href="/eventos/">
-                    Todos os eventos
-                    <span aria-hidden="true"></span>
-                </a>
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10">
+                <div class="max-w-2xl">
+                    <h2 class="text-4xl md:text-5xl font-black text-[#143d29] tracking-tight mb-4">
+                        Eventos
+                    </h2>
+                    <p class="text-[#2c4a3b] text-base leading-relaxed font-normal">
+                        Conheça todos os eventos - atividades, festivais, congressos, palestras e outros - que englobam os <i class="italic font-medium">campi</i> do IFRN em diferentes escalas de alcance social.
+                    </p>
+                </div>
                 <div>
-                    <p>Conheça todos os eventos - atividades, festivais, congressos, palestras e outros - que englobam
-                        os <i>campi</i> do IFRN em diferentes escalas de alcance social.</p>
+                    <a href="/eventos/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#0d6338] text-[#0d6338] hover:bg-[#0d6338] hover:text-white transition-all font-semibold text-xs md:text-sm">
+                        Todos os eventos
+                        <i class="ph ph-caret-right text-sm"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- Grade de cards de eventos -->
-            <div>
+            <!-- Grade de Cards de Eventos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-                <a href="/eventos/9486/">
-                    <span>Em breve</span>
-                    <span title="Campus"><span aria-hidden="true"></span> Pau dos Ferros</span>
-                    <h3>Vivências em Arte</h3>
+                <!-- Card 1 -->
+                <a href="/eventos/9486/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#c3e2cb] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>07</span>
-                        <span>dez</span>
-                        <span>2026</span>
+                        <div class="flex items-center justify-between gap-2 mb-5 flex-wrap">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0d6338]">
+                                <i class="ph ph-triangle text-[10px]"></i> Em breve
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> Pau dos Ferros
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            Vivências em Arte
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#0d6338] tracking-tight leading-none">07</span>
+                        <div class="flex flex-col text-[#0d6338] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">DEZ</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="/eventos/9595/">
-                    <span>Em breve</span>
-                    <span title="Campus"><span aria-hidden="true"></span> Caicó</span>
-                    <h3>III Feira Seridó Ciência</h3>
+                <!-- Card 2 -->
+                <a href="/eventos/9595/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#c3e2cb] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>25</span>
-                        <span>nov</span>
-                        <span>2026</span>
+                        <div class="flex items-center justify-between gap-2 mb-5 flex-wrap">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0d6338]">
+                                <i class="ph ph-triangle text-[10px]"></i> Em breve
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> Caicó
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            III Feira Seridó Ciência
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#0d6338] tracking-tight leading-none">25</span>
+                        <div class="flex flex-col text-[#0d6338] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">NOV</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="/eventos/9783/">
-                    <span>Em breve</span>
-                    <span title="Campus"><span aria-hidden="true"></span> João Câmara</span>
-                    <h3>CPOP 2026 - Competição de Pontes de Palito de Picolé do IFRN João Câmara</h3>
+                <!-- Card 3 -->
+                <a href="/eventos/9783/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#c3e2cb] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>04</span>
-                        <span>nov</span>
-                        <span>2026</span>
+                        <div class="flex items-center justify-between gap-2 mb-5 flex-wrap">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0d6338]">
+                                <i class="ph ph-triangle text-[10px]"></i> Em breve
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> João Câmara
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            CPOP 2026 - Competição de Pontes de Palito de Picolé do IFRN João Câmara
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#0d6338] tracking-tight leading-none">04</span>
+                        <div class="flex flex-col text-[#0d6338] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">NOV</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="/eventos/9333/">
-                    <span>Em breve</span>
-                    <span title="Campus"><span aria-hidden="true"></span> Reitoria</span>
-                    <h3>III Encontro Anual da Comissão Própria de Avaliação</h3>
+                <!-- Card 4 -->
+                <a href="/eventos/9333/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#c3e2cb] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>04</span>
-                        <span>nov</span>
-                        <span>2026</span>
+                        <div class="flex items-center justify-between gap-2 mb-5 flex-wrap">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0d6338]">
+                                <i class="ph ph-triangle text-[10px]"></i> Em breve
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> Reitoria
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            III Encontro Anual da Comissão Própria de Avaliação
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#0d6338] tracking-tight leading-none">04</span>
+                        <div class="flex flex-col text-[#0d6338] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">NOV</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="/eventos/9739/">
-                    <span>Em andamento</span>
-                    <span title="Campus"><span aria-hidden="true"></span> Pau dos Ferros</span>
-                    <h3>Oficina "Dando cores ao sol"</h3>
+                <!-- Card 5 (Corrigido) -->
+                <a href="/eventos/9739/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#6cd123] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>14</span>
-                        <span>set</span>
-                        <span>2026</span>
+                        <div class="flex flex-col gap-2 mb-5 items-start">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#2ea318]">
+                                <i class="ph ph-circle text-[10px]"></i> Em andamento
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> Pau dos Ferros
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            Oficina "Dando cores ao sol"
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#2ea318] tracking-tight leading-none">14</span>
+                        <div class="flex flex-col text-[#2ea318] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">SET</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="/eventos/9764/">
-                    <span>Em andamento</span>
-                    <span title="Campus"><span aria-hidden="true"></span> São Gonçalo do Amarante</span>
-                    <h3>IFJURIS: Introdução ao Direito Constitucional</h3>
+                <!-- Card 6 (Corrigido) -->
+                <a href="/eventos/9764/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#6cd123] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>14</span>
-                        <span>set</span>
-                        <span>2026</span>
+                        <div class="flex flex-col gap-2 mb-5 items-start">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#2ea318]">
+                                <i class="ph ph-circle text-[10px]"></i> Em andamento
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> São Gonçalo do Amarante
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            IFJURIS: Introdução ao Direito Constitucional
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#2ea318] tracking-tight leading-none">14</span>
+                        <div class="flex flex-col text-[#2ea318] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">SET</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="/eventos/9714/">
-                    <span>Em andamento</span>
-                    <span title="Campus"><span aria-hidden="true"></span> Reitoria</span>
-                    <h3>ASTEEAD Conecta: gestão, monitoramento e apoio à EaD no IFRN</h3>
+                <!-- Card 7 (Corrigido) -->
+                <a href="/eventos/9714/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#6cd123] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>14</span>
-                        <span>set</span>
-                        <span>2026</span>
+                        <div class="flex items-center justify-between gap-2 mb-5 flex-wrap">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#2ea318]">
+                                <i class="ph ph-circle text-[10px]"></i> Em andamento
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> Reitoria
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            ASTEEAD Conecta: gestão, monitoramento e apoio à EaD no IFRN
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#2ea318] tracking-tight leading-none">14</span>
+                        <div class="flex flex-col text-[#2ea318] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">SET</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="/eventos/9711/">
-                    <span>Em andamento</span>
-                    <span title="Campus"><span aria-hidden="true"></span> Currais Novos</span>
-                    <h3>Produção e exposição de Sala Temática: Abelha e Mel.</h3>
+                <!-- Card 8 (Corrigido) -->
+                <a href="/eventos/9711/" class="flex flex-col justify-between rounded-3xl bg-white p-6 border border-[#6cd123] hover:shadow-md transition-all duration-300 min-h-[230px]">
                     <div>
-                        <span>14</span>
-                        <span>set</span>
-                        <span>2026</span>
+                        <div class="flex flex-col gap-2 mb-5 items-start">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#2ea318]">
+                                <i class="ph ph-circle text-[10px]"></i> Em andamento
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-600 bg-gray-50 border border-gray-300 rounded-full px-2.5 py-0.5">
+                                <i class="ph ph-buildings"></i> Currais Novos
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-900 leading-snug">
+                            Produção e exposição de Sala Temática: Abelha e Mel.
+                        </h3>
+                    </div>
+                    <div class="mt-8 flex items-baseline gap-2">
+                        <span class="text-5xl font-black text-[#2ea318] tracking-tight leading-none">14</span>
+                        <div class="flex flex-col text-[#2ea318] font-black text-xs leading-none space-y-0.5">
+                            <span class="uppercase tracking-wide">SET</span>
+                            <span class="font-normal text-gray-600">2026</span>
+                        </div>
                     </div>
                 </a>
 
             </div>
+        </section>
+    </main>
+
+    <!-- =========== Rodapé / Footer Exato da Atividade 9 ================= -->
+    <footer id="footer" class="bg-white text-gray-600 mt-auto">
+
+        <!-- Botão "Voltar ao topo" -->
+        <div id="go-to-top" class="max-w-5xl mx-auto border-t border-gray-200">
+            <div class="flex justify-center">
+                <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-4 py-2 text-xs text-green-700 hover:text-green-900 transition-colors duration-200 cursor-pointer">
+                    ↑ &nbsp; Voltar ao topo
+                </button>
+            </div>
         </div>
-    </section>
 
+        <!-- Mapa do site (sitemap) -->
+        <div id="sitemap" class="max-w-5xl mx-auto px-5 py-14 border-b border-gray-200">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 text-xs">
+
+                <!-- Processos seletivos & Cursos -->
+                <li>
+                    <a href="/processos-seletivos/buscar/" class="block mb-3 font-bold text-gray-900 hover:text-green-700 transition-colors duration-200">
+                        Processos seletivos
+                    </a>
+                    <ul class="space-y-2">
+                        <li><a href="/processos-seletivos/buscar/?tipo=1" class="hover:text-green-700 transition-colors">Bolsas para estudantes</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=2" class="hover:text-green-700 transition-colors">Empreenda no IFRN</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=3" class="hover:text-green-700 transition-colors">Estude no IFRN</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=4" class="hover:text-green-700 transition-colors">Gestão IFRN</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=5" class="hover:text-green-700 transition-colors">Internacionalização</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=6" class="hover:text-green-700 transition-colors">Monitoria e Tutoria</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=9" class="hover:text-green-700 transition-colors">Pesquise no IFRN</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=7" class="hover:text-green-700 transition-colors">Servidores</a></li>
+                        <li><a href="/processos-seletivos/buscar/?tipo=8" class="hover:text-green-700 transition-colors">Trabalhe no IFRN</a></li>
+                    </ul>
+
+                    <a href="/cursos/buscar/" class="block mt-10 mb-3 font-bold text-gray-900 hover:text-green-700 transition-colors duration-200">
+                        Cursos
+                    </a>
+                    <ul class="space-y-2">
+                        <li><a href="/cursos/buscar/?categoria=cursos-de-pos-graduacao" class="hover:text-green-700 transition-colors">Cursos de Pós-Graduação</a></li>
+                        <li><a href="/cursos/buscar/?categoria=cursos-superiores" class="hover:text-green-700 transition-colors">Cursos Superiores</a></li>
+                        <li><a href="/cursos/buscar/?categoria=cursos-tecnicos" class="hover:text-green-700 transition-colors">Cursos Técnicos</a></li>
+                        <li><a href="/cursos/buscar/?categoria=outros-cursos" class="hover:text-green-700 transition-colors">Outros Cursos</a></li>
+                    </ul>
+                </li>
+
+                <!-- Campi -->
+                <li>
+                    <a href="/campus/" class="block mb-3 font-bold text-gray-900 hover:text-green-700 transition-colors duration-200">
+                        Campi
+                    </a>
+                    <ul class="space-y-2">
+                        <li><a href="/campus/apodi/" class="hover:text-green-700 transition-colors">Apodi</a></li>
+                        <li><a href="/campus/caico/" class="hover:text-green-700 transition-colors">Caicó</a></li>
+                        <li><a href="/campus/canguaretama/" class="hover:text-green-700 transition-colors">Canguaretama</a></li>
+                        <li><a href="/campus/ceara-mirim/" class="hover:text-green-700 transition-colors">Ceará-Mirim</a></li>
+                        <li><a href="/campus/curraisnovos/" class="hover:text-green-700 transition-colors">Currais Novos</a></li>
+                        <li><a href="/campus/ipanguacu/" class="hover:text-green-700 transition-colors">Ipanguaçu</a></li>
+                        <li><a href="/campus/joaocamara/" class="hover:text-green-700 transition-colors">João Câmara</a></li>
+                        <li><a href="/campus/jucurutu/" class="hover:text-green-700 transition-colors">Jucurutu</a></li>
+                        <li><a href="/campus/lajes/" class="hover:text-green-700 transition-colors">Lajes</a></li>
+                        <li><a href="/campus/macau/" class="hover:text-green-700 transition-colors">Macau</a></li>
+                        <li><a href="/campus/mossoro/" class="hover:text-green-700 transition-colors">Mossoró</a></li>
+                        <li><a href="/campus/natalcentral/" class="hover:text-green-700 transition-colors">Natal-Central</a></li>
+                        <li><a href="/campus/natalcentrohistorico/" class="hover:text-green-700 transition-colors">Natal-Centro Histórico</a></li>
+                        <li><a href="/campus/natal-zona-leste/" class="hover:text-green-700 transition-colors">Natal-Zona Leste</a></li>
+                        <li><a href="/campus/natalzonanorte/" class="hover:text-green-700 transition-colors">Natal-Zona Norte</a></li>
+                        <li><a href="/campus/novacruz/" class="hover:text-green-700 transition-colors">Nova Cruz</a></li>
+                        <li><a href="/campus/parelhas/" class="hover:text-green-700 transition-colors">Parelhas</a></li>
+                        <li><a href="/campus/parnamirim/" class="hover:text-green-700 transition-colors">Parnamirim</a></li>
+                        <li><a href="/campus/paudosferros/" class="hover:text-green-700 transition-colors">Pau dos Ferros</a></li>
+                        <li><a href="/campus/santacruz/" class="hover:text-green-700 transition-colors">Santa Cruz</a></li>
+                        <li><a href="/campus/saogoncalo/" class="hover:text-green-700 transition-colors">São Gonçalo do Amarante</a></li>
+                        <li><a href="/campus/sao-miguel/" class="hover:text-green-700 transition-colors">São Miguel</a></li>
+                        <li><a href="/campus/sao-paulo-do-potengi/" class="hover:text-green-700 transition-colors">São Paulo do Potengi</a></li>
+                        <li><a href="/campus/touros/" class="hover:text-green-700 transition-colors">Touros</a></li>
+                        <li><a href="/campus/umarizal/" class="hover:text-green-700 transition-colors">Umarizal</a></li>
+                        <li><a href="/campus/reitoria/" class="hover:text-green-700 transition-colors">Reitoria</a></li>
+                    </ul>
+                </li>
+
+                <!-- Institucional -->
+                <li>
+                    <a href="/institucional/" class="block mb-3 font-bold text-gray-900 hover:text-green-700 transition-colors duration-200">
+                        Institucional
+                    </a>
+                    <ul class="space-y-2">
+                        <li><a href="/institucional/apresentacao/" class="hover:text-green-700 transition-colors">Apresentação</a></li>
+                        <li><a href="/institucional/administracao-e-infraestrutura/" class="hover:text-green-700 transition-colors">Administração</a></li>
+                        <li><a href="/institucional/comissoes-permanentes/" class="hover:text-green-700 transition-colors">Comissões permanentes</a></li>
+                        <li><a href="/institucional/comunicacao/" class="hover:text-green-700 transition-colors">Comunicação Institucional</a></li>
+                        <li><a href="/institucional/ensino/" class="hover:text-green-700 transition-colors">Ensino</a></li>
+                        <li><a href="/institucional/estudantes/" class="hover:text-green-700 transition-colors">Estudantes</a></li>
+                        <li><a href="/institucional/extensao/" class="hover:text-green-700 transition-colors">Extensão</a></li>
+                        <li><a href="/institucional/gabinete/" class="hover:text-green-700 transition-colors">Gabinete</a></li>
+                        <li><a href="/institucional/gestao-estrategica/" class="hover:text-green-700 transition-colors">Gestão Estratégica</a></li>
+                        <li><a href="/institucional/governanca/" class="hover:text-green-700 transition-colors">Governança</a></li>
+                        <li><a href="/institucional/pesquisa-pos-graduacao-e-inovacao/" class="hover:text-green-700 transition-colors">Pesquisa, Pós-graduação e Inovação</a></li>
+                        <li><a href="/institucional/servidores/" class="hover:text-green-700 transition-colors">Servidores</a></li>
+                        <li><a href="/institucional/tecnologia-da-informacao/" class="hover:text-green-700 transition-colors">Tecnologia da Informação</a></li>
+                        <li><a href="/institucional/internacionalizacao/" class="hover:text-green-700 transition-colors">Internacionalização</a></li>
+                        <li><a href="/institucional/infraestrutura/" class="hover:text-green-700 transition-colors">Infraestrutura</a></li>
+                        <li><a href="/institucional/polo-de-inovacao-currais-novos/" class="hover:text-green-700 transition-colors">Polo de Inovação Currais Novos</a></li>
+                    </ul>
+                </li>
+
+                <!-- Acesso à Informação, Eventos, Serviços, Acessibilidade, Créditos -->
+                <li>
+                    <a href="/acesso-a-informacao/" class="block mb-3 font-bold text-gray-900 hover:text-green-700 transition-colors duration-200">
+                        Acesso à Informação
+                    </a>
+                    <ul class="space-y-2">
+                        <li><a href="/acesso-a-informacao/institucional/" class="hover:text-green-700 transition-colors">Institucional</a></li>
+                        <li><a href="/acesso-a-informacao/acoes-e-programas/" class="hover:text-green-700 transition-colors">Ações e Programas</a></li>
+                        <li><a href="/acesso-a-informacao/participacao-social/" class="hover:text-green-700 transition-colors">Participação social</a></li>
+                        <li><a href="/acesso-a-informacao/auditorias/" class="hover:text-green-700 transition-colors">Auditorias</a></li>
+                        <li><a href="/acesso-a-informacao/convenios-e-transferencias/" class="hover:text-green-700 transition-colors">Convênios e Transferências</a></li>
+                        <li><a href="/acesso-a-informacao/receitas-e-despesas/" class="hover:text-green-700 transition-colors">Receitas e Despesas</a></li>
+                        <li><a href="/acesso-a-informacao/licitacoes-e-contratos/" class="hover:text-green-700 transition-colors">Licitações e Contratos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </footer>
 </body>
-
 </html>
