@@ -11,6 +11,92 @@
 </head>
 <body class="min-h-screen bg-base-200 flex items-center justify-center p-6">
 
-  
+  <div id="app" class="w-full max-w-md bg-base-100 p-6 rounded-box shadow-lg">
+
+    <form v-if="!confirmado" @submit.prevent="confirmarInscricao" class="space-y-4">
+
+      <!-- v-model - ligar input ao estado -->
+      <div>
+        <label for="nome" class="block font-semibold mb-1">Nome</label>
+        <input id="nome" type="text" v-model="nome" class="input input-bordered w-full">
+        <p v-if="erroNome" class="text-error text-sm mt-1">Informe seu nome</p>
+      </div>
+
+      <div>
+        <label for="email" class="block font-semibold mb-1">E-mail</label>
+        <input id="email" type="email" v-model="email" class="input input-bordered w-full">
+        <p v-if="erroEmail" class="text-error text-sm mt-1">Informe um e-mail válido</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full">Confirmar inscrição</button>
+    </form>
+
+    <!-- área de resultado -->
+    <div v-else class="space-y-4">
+      <div class="alert alert-success">Inscrição confirmada!</div>
+      <div class="bg-base-200 rounded-box p-4 space-y-2">
+        <p><strong>Nome:</strong> {{ nome }}</p>
+        <p class="break-words"><strong>E-mail:</strong> {{ email }}</p>
+      </div>
+      <button @click="editarInscricao" class="btn btn-outline w-full">Editar</button>
+    </div>
+
+  </div>
+
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          nome: '',
+          email: '',
+          erroNome: false,
+          erroEmail: false,
+          confirmado: false
+        };
+      },
+
+      // funções de métodos para nosso app
+      methods: {
+        //serve para remover mensagens
+        limparErros(){
+            this.erroNome = false;
+            this.erroEmail = false;
+        },
+
+        // verifica se os campos estão corretos e tipos validos
+        validarCampos(){
+            // verifica se os erros estão limpos
+            this.limparErros();
+            
+            // valida nome
+            if(this.nome.trim() === ''){
+                this.erroNome = true;
+            }
+
+            //valida o email
+            if(this.email.trim() === '' || !this.email.includes('@')){
+                this.erroEmail = true;
+            }
+
+            // retornou
+            return !this.erroNome && !this.erroEmail;         
+        },
+        
+        // se retornar false, interrompe a inscrição
+
+        confirmarInscricao(){
+            if(!this.validarCampos()){
+                return;
+            }
+        },
+        
+        editarInscricao(){
+            this.confirmado = false;
+            this.limparErros();
+        }
+      }
+    }).mount("#app"); 
+  </script>
+
 </body>
 </html>
